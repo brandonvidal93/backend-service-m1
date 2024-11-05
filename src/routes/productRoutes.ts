@@ -7,12 +7,12 @@ import {
   deleteProduct 
 } from "../controllers/productController";
 
-const router = Router();
+const productRoutes = Router();
 
-router.get("products/", getAllProducts);
-router.get("products/:id", getProductByID);
-router.post("products/", createProduct);
-router.put("products/:id", updateProduct);
-router.delete("products/:id", deleteProduct);
+productRoutes.get("products/", getAllProducts);
+productRoutes.get("products/:id", getProductByID);
+productRoutes.post("products/", createProduct);
+productRoutes.put("products/:id", updateProduct);
+productRoutes.delete("products/:id", deleteProduct);
 
-export default router;
+export default productRoutes;
