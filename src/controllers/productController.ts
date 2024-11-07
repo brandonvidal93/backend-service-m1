@@ -9,7 +9,14 @@ const productRepository = AppDataSource.getRepository(Product);
 export const getAllProducts = async(req: Request, res: Response) => {
   try {
     const products = await productRepository.find();
-    res.json(products);
+    if (products.length > 0) {
+      res.json(products);
+    } else {
+      res.status(404).json({
+        message: "Productos no encontrados."
+      });
+    }
+    
   } catch(error) {
     res.status(500).json({
       message: "Error al obtener los productos."
