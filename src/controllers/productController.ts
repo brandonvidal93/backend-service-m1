@@ -47,11 +47,12 @@ export const getProductByID = async(req: Request, res: Response) => {
 // Crear un producto (POST)
 export const createProduct = async(req: Request, res: Response) => {
   try {
-    const { name, description, price } = req.body;
+    const { name, description, price, imgUrl } = req.body;
     const product = new Product();
     product.name = name;
     product.description = description;
     product.price = price;
+    product.imgUrl = imgUrl;
     await productRepository.save(product);
     res.status(201).json(product);
   } catch(error) {
@@ -64,7 +65,7 @@ export const createProduct = async(req: Request, res: Response) => {
 // Actualizar un producto existente
 export const updateProduct = async(req: Request, res: Response) => {
   try {
-    const { name, description, price } = req.body; // Tomamos los datos del request
+    const { name, description, price, imgUrl } = req.body; // Tomamos los datos del request
     
     // Buscamos el producto para actualizarlo
     const product = await productRepository.findOneBy({
@@ -76,6 +77,7 @@ export const updateProduct = async(req: Request, res: Response) => {
       product.name = name ?? product.name;
       product.description = description ?? product.description;
       product.price = price ?? product.price;
+      product.imgUrl = imgUrl ?? product.imgUrl;
       await productRepository.save(product); // Guardamos los cambios del producto
       res.json(product);
     } else {
