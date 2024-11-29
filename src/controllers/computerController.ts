@@ -52,7 +52,6 @@ export const createProduct = async(req: Request, res: Response) => {
     product.name = name;
     product.description = description;
     product.price = price;
-    product.imgUrl = imgUrl;
     await productRepository.save(product);
     res.status(201).json(product);
   } catch(error) {
@@ -77,7 +76,6 @@ export const updateProduct = async(req: Request, res: Response) => {
       product.name = name ?? product.name;
       product.description = description ?? product.description;
       product.price = price ?? product.price;
-      product.imgUrl = imgUrl ?? product.imgUrl;
       await productRepository.save(product); // Guardamos los cambios del producto
       res.json(product);
     } else {
